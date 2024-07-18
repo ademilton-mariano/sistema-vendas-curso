@@ -25,4 +25,8 @@
       <Folder Include="Data\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-flat.css" />
+    </ItemGroup>
+
 </Project>

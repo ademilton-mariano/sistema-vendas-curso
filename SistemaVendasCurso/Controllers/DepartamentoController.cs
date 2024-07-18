@@ -22,7 +22,7 @@ public class DepartamentoController : Controller
     // GET: Departamento
     public async Task<IActionResult> Index()
     {
-        return View(await _context.Departamento.ToListAsync());
+        return View(await _context.Departamentos.ToListAsync());
     }
 
     // GET: Departamento/Details/5
@@ -33,7 +33,7 @@ public class DepartamentoController : Controller
             return NotFound();
         }
 
-        var departamento = await _context.Departamento
+        var departamento = await _context.Departamentos
             .FirstOrDefaultAsync(m => m.Id == id);
         if (departamento == null)
         {
@@ -73,7 +73,7 @@ public class DepartamentoController : Controller
             return NotFound();
         }
 
-        var departamento = await _context.Departamento.FindAsync(id);
+        var departamento = await _context.Departamentos.FindAsync(id);
         if (departamento == null)
         {
             return NotFound();
@@ -124,7 +124,7 @@ public class DepartamentoController : Controller
             return NotFound();
         }
 
-        var departamento = await _context.Departamento
+        var departamento = await _context.Departamentos
             .FirstOrDefaultAsync(m => m.Id == id);
         if (departamento == null)
         {
@@ -139,10 +139,10 @@ public class DepartamentoController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-        var departamento = await _context.Departamento.FindAsync(id);
+        var departamento = await _context.Departamentos.FindAsync(id);
         if (departamento != null)
         {
-            _context.Departamento.Remove(departamento);
+            _context.Departamentos.Remove(departamento);
         }
 
         await _context.SaveChangesAsync();
@@ -151,6 +151,6 @@ public class DepartamentoController : Controller
 
     private bool DepartamentoExists(int id)
     {
-        return _context.Departamento.Any(e => e.Id == id);
+        return _context.Departamentos.Any(e => e.Id == id);
     }
 }

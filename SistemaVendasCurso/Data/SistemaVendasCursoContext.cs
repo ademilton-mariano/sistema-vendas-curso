@@ -10,5 +10,7 @@ public class SistemaVendasCursoContext : DbContext
     {
     }
 
-    public DbSet<Departamento> Departamento { get; set; } = default!;
+    public DbSet<Departamento> Departamentos { get; set; }
+    public DbSet<Vendedor> Vendedores { get; set; }
+    public DbSet<Venda> Vendas { get; set; }
 }
