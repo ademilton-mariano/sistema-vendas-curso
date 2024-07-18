@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaVendasCurso.Data;
+using SistemaVendasCurso.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("SistemaVendasCursoContext");
@@ -7,6 +9,7 @@ builder.Services.AddDbContext<SistemaVendasCursoContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddScoped<PopularBanco>();
+builder.Services.AddScoped<VendedorService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
