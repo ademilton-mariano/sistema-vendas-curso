@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SistemaVendasCurso.Data;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +6,7 @@ var connectionString = builder.Configuration.GetConnectionString("SistemaVendasC
 builder.Services.AddDbContext<SistemaVendasCursoContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+builder.Services.AddScoped<PopularBanco>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -20,6 +20,20 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try
+    {
+        var popularBanco = services.GetRequiredService<PopularBanco>();
+        popularBanco.Popular();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while populating the database.");
+    }
+}
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

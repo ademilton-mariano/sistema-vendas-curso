@@ -7,7 +7,7 @@ public class Venda
     public int Id { get; set; }
     public DateTime DataVenda { get; set; }
     public double Total { get; set; }
-    public StatusVenda Status { get; set; }
+    public StatusVenda StatusVenda { get; set; }
     public Vendedor Vendedor { get; set; }
     
     public Venda()
@@ -17,23 +17,23 @@ public class Venda
     public Venda(int id
         , DateTime dataVenda
         , double total
-        , StatusVenda status
+        , StatusVenda statusVenda
         , Vendedor vendedor)
     {
         Id = id;
         DataVenda = dataVenda;
         Total = total;
-        Status = status;
+        StatusVenda = statusVenda;
         Vendedor = vendedor;
     }
     
     public void SetStatusVenda(StatusVenda status)
     {
-        Status = status;
+        StatusVenda = status;
     }
     
     public override string ToString()
     {
-        return $"Id: {Id}, Data: {DataVenda}, Total: {Total}, Status: {Status}";
+        return $"Id: {Id}, Data: {DataVenda}, Total: {Total}, Status: {StatusVenda}";
     }
 }
